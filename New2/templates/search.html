@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %} Edit Profile {% endblock %}
+
+{% block content %}
+
+<form action="/search/" method="get">{% csrf_token %}
+        <ul>
+            <input type="text" name="q" maxlength="30">
+        </ul>
+
+        <div class = "errAdd">
+            <p style="color:red;"> {{ msg }} </p>
+        </div>
+
+        <div class = "searchButton">
+            <input type="submit" name="Search" value="Search">
+        </div>
+    </form>
+
+
+{% endblock %}

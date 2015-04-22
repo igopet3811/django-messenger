@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %} Edit Profile {% endblock %}
+
+{% block content %}
+
+
+
+  <form action="/profile/{{ user.id }}/addContact/" method="get">{% csrf_token %}
+    <ul>
+    <input type="text" name="q" maxlength="30">
+
+    </ul>
+        <div class = "errAdd">
+            <p style="color:red;"> {{ msg }} </p>
+        </div>
+
+        <div class = "addContactButton">
+            <input type="submit" name="Add" value="Add">
+        </div>
+    </form>
+
+
+{% endblock %}

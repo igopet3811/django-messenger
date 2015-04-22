@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Welcome{% endblock %}
+
+
+
+{% block content %}
+
+
+
+{% if user.id == Prof.id %}
+
+<p>
+    <a class="btn btn-lg btn-link"  href="/profile/{{ user.id }}/edit_profile/">Edit Profile</a></button>
+    <a class="btn btn-lg btn-link"  href="/profile/{{ user.id }}/changeImage/">Change Image</a></button>
+    <a class="btn btn-lg btn-link"  href="/profile/{{ user.id }}/addContact/">Add Contact</a></button>
+    <a class="btn btn-lg btn-link"  href="/profile/{{user.id}}/createRoom/">Create Chat Room</a></button>
+</p>
+{% endif %}
+    {% if Pic != "" %}
+        <img src="{% static "profile_pictures/" %}{{ Prof.id }}/{{ Prof.username }}.jpg" width="150" 
+height="200" alt="{{ Prof.username }}"/>
+    {% else %}
+        <img src="{% static "img/default_photo.jpg" %}" alt="NUIGimage"/>
+    {% endif %}
+<div class="page-header">
+    <h1>{{ Prof.username }}'s profile:</h1>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <table class="table">
+	
+            <thead>
+            <tr>
+                <th>Type</th>
+                <th>Details</th>
+            </tr>
+            </thead>
+            <tbody>
+                  
+                       
+            <tr>
+                <td>Username:</td>
+                <td>{{ Prof.username }}</td>
+            </tr>
+            <tr>
+                <td>First Name</td>
+                <td>{{ Prof.first_name }}</td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td>{{ Prof.last_name}}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>{{ Prof.email}}</td>
+            </tr>
+            <tr>
+                <td>Administrator</td>
+                <td>{% if Prof.is_staff %} Yes {% else %} No {% endif %}</td>
+            </tr>
+            <tr>
+                <td>Last Login</td>
+                <td>{{ Prof.last_login }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{%  endblock %}

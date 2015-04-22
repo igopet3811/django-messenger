@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %} Change your image {% endblock %}
+
+{% block content %}
+
+<form class="form-signin" action="/profile/{{ user.id }}/changeImage/" method="post" enctype="multipart/form-data" >
+
+    <div class="container">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary " type="submit" value="Change pic">Change pic</button>
+    </div> <!-- /container -->
+
+</form>
+
+
+{% endblock %}

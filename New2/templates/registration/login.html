@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %} Login {% endblock %}
+{% load staticfiles %}
+{% block content %}
+
+    <div class="container">
+      <form class="form-signin" action="/auth/" method="post">
+        {% csrf_token %}
+        <h2 class="form-signin-heading" align="center">Sign in</h2>
+        <label for="username">User name:</label>
+        <input type="text" id="username" name="username" value="" class="form-control" placeholder="UserName" required autofocus>
+        <label for="password" >Password:</label>
+        <input type="password" id="password" name="password" value="" class="form-control" placeholder="Password" required>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login">Sign in</button>
+          <p style="color:red;"> {{ msg }} </p>
+      </form>
+
+    </div>
+
+</form>
+{% endblock %}

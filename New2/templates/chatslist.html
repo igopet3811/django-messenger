@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Select your chatroom{% endblock %}
+
+{% block content %}
+
+
+	<h2 align="center"><b>Chat selection window</b></h2>
+
+    <div class="container marketing">
+
+      <!-- Three columns of text below the carousel -->
+        <div class="row">
+            <div class="col1">
+                {% if chats0 or chats1 or chats2 %}
+                <h2>Contacts</h2>
+                
+                  {% for c in chats0 %}
+                    {% for i in c.users.all %}
+                        {% if i != user %}
+
+                        <li><a href="/chatroom/{{ c.id }}">{{ i.username}} <br></a></li>
+
+                        {% endif %}
+                    {% endfor %}
+                  {% endfor %}
+
+            </div>
+        <div class="col2">
+          <h2>Private Chat Rooms</h2>
+            {% for c in chats1 %}
+                <li><a href="/chatroom/{{ c.id }}">{{ c.name }} <br></a></li>
+            {% endfor %}
+        </div>
+        <div class="col3">
+          <h2>Open Chat Rooms</h2>
+          {% for c in chats2 %}
+            <li><a href="/chatroom/{{ c.id }}">{{ c.name }} <br></a></li>
+          {% endfor %}
+
+        </div>
+      </div><!-- /.row -->
+
+     {% else %}
+    <p> No chat rooms </p>
+    {% endif %}
+    </div>
+{%  endblock %}

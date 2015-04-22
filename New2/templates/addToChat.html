@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %} Edit Profile {% endblock %}
+
+{% block content %}
+
+    <p style="color:red;"> {{ msg }} </p>
+
+    <form action="/chatroom/{{ ch_id }}/addToChat/" method="get">{% csrf_token %}
+    <ul>
+    <input type="text" name="q" maxlength="30">
+
+    </ul>
+
+    <input type="submit" name="Add" value="Add">
+    </form>
+
+
+{% endblock %}

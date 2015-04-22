@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+
+
+	<h3>Chat window</h3>
+
+
+<!--  sidebar area -->
+<section class="sidebar">
+<div id="menu">
+	 <ol>
+     {% if chats %}
+    {% for c in chats %}
+        {% if c.name %}
+            <li>Chat: {{ c.name }}<br></li>
+            {% for i in messages %}
+                {% if c == i.chat %}
+                <li>{{ i.sender }}:{{i.message }} <br></li>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <li>{{ c.users }}<br></li>
+        {% endif %}
+    {% endfor %}
+     {% else %}
+    <p> No chat rooms </p>
+{% endif %}
+    </ol>
+
+
+
+
+</div>
+</section>
+
+<!--  input area
+<section class="input-area">
+	<textarea class="input-box"></textarea>
+	<button class="submit">Send</button>
+	<p class="clear-both"></p>
+</section>
+
+-->
+
+
+
+
+
+
+<div id="chatbox">
+</div>
+
+
+
+
+
+
+{%  endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %} Create an Account {% endblock %}
+
+{% block content %}
+    <form class="form-signin" action="/register/" method="post">
+        {% csrf_token %}
+
+        <h2 class="form-signin-heading" align="center">Registration</h2>
+        <label for="id_username">Username:</label>
+        <input type="text" id="id_username" name="username" class="form-control" maxlength="30" required autofocus>
+        <label for="id_email">Email:</label>
+        <input id="id_email" name="email" type="email" class="form-control" required/>
+        <label for="id_password1">Password:</label>
+        <input id="id_password1" name="password1" type="password" class="form-control" required/>
+        <label for="id_password2">Password confirmation:</label>
+        <input id="id_password2" name="password2" type="password" class="form-control" required/>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit" value="Register">Register</button>
+
+    </form>
+
+{% endblock %}

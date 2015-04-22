@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+{% if selectedchat.type == 1 %}
+    <ul>
+    <p> Please choose an option from the menu</p>
+
+  <li><a href="/chatroom/{{ selectedchat.id }}/addToChat/">Add to chat</a></li>
+
+
+
+
+    </ul>
+{% endif %}
+
+
+<div class="cbox" id="chatbox" left = 100 >
+</div>
+
+
+
+
+<!--  input area  -->
+<section class="input-area">
+{% if pic == 1 %}
+<img width="32" height="32" src="{% static "profile_pictures/" %}{{ user.id }}/{{ user.username }}.jpg" alt="userAvatar" title="{{user.username}}">
+    {% else %}
+         <img width="32" height="32" src="{% static "img/default_photo.jpg" %}" alt="NUIGimage" >
+    {% endif %}
+
+    <form action="/addMessage/{{ selectedchat.id }}" method="get">{% csrf_token %}
+
+    <ul>
+<input class="input-box" type="text" name="q" maxlength="900" autofocus autocomplete="off">
+
+    </ul>
+
+<input class="submit" type="submit" name="sendMessage" value="send">
+</form>
+    </section>
+
+
+
+
+</div>
+</section>
+
+    <!--<li><a href="/chatroom/1/refresh/">Refresh</a></li>
+
+<!--  input area
+<section class="input-area">
+	<textarea class="input-box"></textarea>
+	<button class="submit">Send</button>
+	<p class="clear-both"></p>
+</section>
+
+-->
+    <script type="text/javascript">
+
+    LATEST_CHAT_URL = window.location.href +'refresh/';
+    //window.alert(LATEST_CHAT_URL);
+    $("html, body").animate({ scrollTop: 10000000 });
+    $(function() {
+        updateChat();
+        // Start a timer that will call our API at regular intervals
+        // The 2nd value is the time in milliseconds, so 5000 = 5 seconds
+
+        setInterval(updateChat, 3000)
+    });
+
+    function updateChat() {
+
+        $.getJSON(LATEST_CHAT_URL, function(data){
+            // Enumerate JSON objects
+            //window.alert(data);
+
+            //var arr_from_json = JSON.parse(data);
+            //window.alert(data[0].msg);
+            $("#chatbox").empty();
+            $.each(data,function(i,item){
+                var newChatLine = $('<class="chat">');
+
+                 if (data[i].img == 1)
+                    newChatLine.append('<img src="{% static "profile_pictures/" %}'+data[i].user_id+'/'+data[i].username+'.jpg'+'" width="32" height="32" alt="NUIGimage"/>');
+                 else
+                    newChatLine.append('<img src="{% static "img/default_photo.jpg"%}"width="32" height="32" alt="NUIGimage"/>');
+
+
+
+
+                newChatLine.append(data[i].username +": " );
+                newChatLine.append(data[i].msg + "<br>");
+                newChatLine.append(data[i].timesent + "<br><br>");
+                $('#chatbox').append(newChatLine);
+
+
+            });
+        });
+
+    }
+
+</script>
+
+
+
+
+{% endblock %}

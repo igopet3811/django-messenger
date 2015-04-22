@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %} Create Room {% endblock %}
+
+{% block content %}
+
+
+    <form action="/profile/{{ user.id }}/createRoom/" method="get">
+        {% csrf_token %}
+    <ul>
+
+    <input type="text" name="q" maxlength="30">
+
+    </ul>
+        <ul>
+            <div class = "openCheckbox">
+        <input type="checkbox" name="roomType" value ="t"> Open room <br>
+                </div>
+        </ul>
+
+        <div class = "errAdd">
+            <p style="color:red;"> {{ msg }} </p>
+        </div>
+
+        <div class = "addRoomButton">
+            <input type="submit" name="Add" value="Add">
+        </div>
+    </form>
+
+
+{% endblock %}
